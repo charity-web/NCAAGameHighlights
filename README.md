@@ -1,52 +1,64 @@
 **Project Description**: This project uses RapidAPI to obtain NCAA game highlights using a Docker container and uses AWS Media Convert to convert the media file.
 
-**File Overview**:
+**FEATURES**
+
+	Fetch Highlights: Download videos from the API, upload them to S3, and optimise their quality using AWS MediaConvert (e.g., resolution adjustments).
+	
+	Process Videos: Download videos from the API, upload them to S3, and optimise their quality using AWS MediaConvert (e.g., resolution adjustments, audio quality, etc.).
+	
+	AWS MediaConvert: Convert video files from one format to another, supporting a wide variety of formats like MP4, MOV, MKV, and more.
+	
+	Storage: Use Amazon S3 for storing large files, including video content.
+
+
+
+**FILE OVERVIEW**:
 
   The **"config.py"** script performs the following actions: 
   
-  Imports necessary environment variables and assigns them to Python variables, providing default values where appropriate. 
-
-  This approach allows for flexible configuration management, enabling different 
-  settings for various environments (e.g., development, staging, production) without modifying the source code.
+	  Imports necessary environment variables and assigns them to Python variables, providing default values where appropriate. 
+	
+	  This approach allows for flexible configuration management, enabling different 
+	  settings for various environments (e.g., development, staging, production) without modifying the source code.
 
   The **"fetch.py"** script performs the following actions:
 
-  Establishes the date and league that will be used to find highlights. We are using NCAA in this example because it's included in the free version. 
-
-  This will fetch the highlights from the API and store them in an S3 bucket as a JSON file (basketball_highlight.json)
+	  Establishes the date and league that will be used to find highlights. We are using NCAA in this example because it's included in the free version. 
+	
+	  This will fetch the highlights from the API and store them in an S3 bucket as a JSON file (basketball_highlight.json)
 
   **"process_one_video.py"** performs the following actions:
 
-  Connects to the S3 bucket and retrieves the JSON file. 
-
-  Extracts the first video URL from within the JSON file. 
-  
-  Downloads the video file from the internet into the memory using the requests library. 
-  
-  Saves the video as a new file in the S3 bucket under a different 
-  folder (videos/) 
-  
-  Logs the status of each step
+	  Connects to the S3 bucket and retrieves the JSON file. 
+	
+	  Extracts the first video URL from within the JSON file. 
+	  
+	  Downloads the video file from the internet into the memory using the requests library. 
+	  
+	  Saves the video as a new file in the S3 bucket under a different 
+	  folder (videos/) 
+	  
+	  Logs the status of each step
 
   **"mediaconvert_process.py"** performs the following actions:
 
-  Creates and submits a MediaConvert job 
-  
-  Uses MediaConvert to process a video file - configures the video codec, resolution and bitrate. Also configures the audio settings 
-  
-  Stores the processed video back into an S3 bucket
+	  Creates and submits a MediaConvert job 
+	  
+	  Uses MediaConvert to process a video file - configures the video codec, resolution and bitrate. Also configures the audio settings 
+	  
+	  Stores the processed video back into an S3 bucket
 
   **"run_all.py"** performs the following actions: 
   
-  Runs the scripts in a chronological order and provides buffer time for the tasks to be created.
+	  Runs the scripts in a chronological order and provides buffer time for the tasks to be created.
 
   **".env"** file stores all over the environment variables, these are variables that we don't want to hardcode into our script.
 
   **"Dockerfile"** performs the following actions: 
   
-  Provides the step by step approach to build the image.
+	  Provides the step by step approach to build the image.
   
-**Technologies**
+**TECHNOLOGIES**
   
 Cloud Provider: AWS
 
@@ -62,7 +74,7 @@ Containerization: Docker
 
 IAM Security: Custom least privilege policies for ECS task execution and API Gateway
 
-**Prerequisites**: 
+**PREREQUISITES**: 
 
 Before running the scripts, ensure you have the following:
 
@@ -96,12 +108,12 @@ Before running the scripts, ensure you have the following:
    somewhere, you need to create an access key.
 
 
-**Technical Diagram**
+**TECHNICAL DIAGRAM**
 
   ![Game Highlight processor pic](https://github.com/user-attachments/assets/2cf1d05c-1314-4699-a797-29e490ce3bd0)
 
 
-**Project Structure**
+**PROJECT STRUCTURE**
 
  ``` 
    src/
