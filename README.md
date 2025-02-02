@@ -2,13 +2,13 @@
 
 **FEATURES**
 
-	Fetch Highlights: Download videos from the API, upload them to S3, and optimise their quality using AWS MediaConvert (e.g., resolution adjustments).
-	
-	Process Videos: Download videos from the API, upload them to S3, and optimise their quality using AWS MediaConvert (e.g., resolution adjustments, audio quality, etc.).
-	
-	AWS MediaConvert: Convert video files from one format to another, supporting a wide variety of formats like MP4, MOV, MKV, and more.
-	
-	Storage: Use Amazon S3 for storing large files, including video content.
+Fetch Highlights: Obtain the highlights from the API and store them in an S3 bucket as a JSON file.
+
+Process Videos: Extracts the first video URL from within the JSON file. Downloads the video file from the internet into the memory using the requests library. Saves the video as a new file in the S3 bucket.
+
+AWS MediaConvert: Convert video files from one format to another, also configures the audio settings and stores the processed video back into an S3 bucket.
+
+Storage: Use Amazon S3 for storing large files, including video content.
 
 
 
@@ -18,8 +18,7 @@
   
 	  Imports necessary environment variables and assigns them to Python variables, providing default values where appropriate. 
 	
-	  This approach allows for flexible configuration management, enabling different 
-	  settings for various environments (e.g., development, staging, production) without modifying the source code.
+	  This approach allows for flexible configuration management, enabling different settings for various environments (e.g., development, staging, production) without modifying the source code.
 
   The **"fetch.py"** script performs the following actions:
 
@@ -35,8 +34,7 @@
 	  
 	  Downloads the video file from the internet into the memory using the requests library. 
 	  
-	  Saves the video as a new file in the S3 bucket under a different 
-	  folder (videos/) 
+	  Saves the video as a new file in the S3 bucket under a different folder (videos/) 
 	  
 	  Logs the status of each step
 
